@@ -61,6 +61,9 @@
   - name: install tmux
     apt: pkg=tmux
 
+  - name: install xclip
+    apt: pkg=xclip
+
   - name: install pip
     apt: pkg=python-pip
 
