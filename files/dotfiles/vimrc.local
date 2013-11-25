@@ -1,0 +1,22 @@
+set nospell
+nmap <silent> <C-N> :silent noh<CR>
+
+" clipboard support for mac
+set clipboard=unnamed
+
+set expandtab
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+
+" set t_Co=256
+set background=dark
+" let g:solarized_termcolors=256
+" let g:solarized_visibility="normal"
+" let g:molokai_original=1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#272822   ctermbg=234
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3E3D32   ctermbg=235
+
+"colorscheme molokai
+"let g:Powerline_symbols="fancy"

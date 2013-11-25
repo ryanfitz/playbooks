@@ -1,0 +1,23 @@
+[color]
+  ui = true
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red
+  new = cyan
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[user]
+  name = Foo Bar
+  mail = foo@example.com
+  email = foo@example.com
+[format]
+  pretty = oneline
+[core]
+  editor = /usr/bin/vim

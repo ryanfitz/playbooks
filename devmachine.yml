@@ -1,0 +1,124 @@
+---
+- hosts: localhost
+  vars:
+    dev_user: fitz
+    user_home: /home/{{ dev_user }}
+    oh_my_zsh_home: /home/{{ dev_user }}/.oh-my-zsh
+  remote_user: root
+  tasks:
+  - name: setup erlang solutions repo
+    apt_repository: repo='deb http://packages.erlang-solutions.com/debian {{ ansible_lsb.codename }} contrib'
+
+  - name: add Erlang Solutions apt-key
+    apt_key: url=http://packages.erlang-solutions.com/debian/erlang_solutions.asc state=present
+
+  - name: setup nodejs ppa
+    apt_repository: repo='ppa:chris-lea/node.js'
+
+  - name: setup webupd8team repo
+    apt_repository: repo='ppa:webupd8team/java'
+
+  - name: chrome repo
+    apt_repository: repo='deb http://dl.google.com/linux/chrome/deb stable main'
+
+  - name: chrome repo key
+    apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
+
+  - name: install aptitude
+    apt: pkg=aptitude
+
+  - name: apt-get upgrade
+    apt: upgrade=yes update_cache=yes
+
+  - name: install git
+    apt: pkg=git
+
+  - name: install erlang
+    apt: pkg=erlang state=latest
+
+  - name: install nodejs
+    apt: pkg=nodejs state=latest
+
+  - name: Automatically select the Oracle License
+    tags: java
+    shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+
+  - name: install java
+    apt: pkg=oracle-java7-installer state=latest
+
+  - name: install ncurses-term
+    apt: pkg=ncurses-term
+
+  - name: install urxvt
+    apt: pkg=rxvt-unicode-256color
+
+  - name: install i3-wm
+    apt: pkg=i3
+
+  - name: install zsh
+    apt: pkg=zsh
+
+  - name: install tmux
+    apt: pkg=tmux
+
+  - name: install pip
+    apt: pkg=python-pip
+
+  - name: install curl
+    apt: pkg=curl
+
+  - name: aws cli
+    pip: name=awscli
+
+  - name: install google-chrome
+    apt: pkg=google-chrome-stable
+
+  - name: create developer account
+    user: name={{ dev_user }} shell=/usr/bin/zsh generate_ssh_key=yes
+
+  - name: setting zsh as default shell for {{ dev_user }}
+    shell: chsh -s /usr/bin/zsh {{ dev_user }}
+
+  # setup oh-my-zsh
+  - name: setup oh-my-zsh
+    git: repo=git://github.com/robbyrussell/oh-my-zsh.git dest={{ oh_my_zsh_home }}
+  - file: path={{ oh_my_zsh_home }} owner={{ dev_user }} group={{ dev_user }} recurse=yes
+  - copy: src=files/zshrc.zsh-template dest=/home/{{ dev_user }}/.zshrc owner={{ dev_user }} group={{ dev_user}} mode=0644
+
+  - name: solarize terminal
+    copy: src=files/Xresources dest=/home/{{ dev_user }}/.Xresources owner={{ dev_user }} group={{ dev_user}} mode=0644
+
+  - name: i3 config
+    copy: src=files/i3/ dest=/home/{{ dev_user }}/.i3 owner={{ dev_user }} group={{ dev_user}} mode=0644
+  - file: path=/home/{{ dev_user }}/.i3 owner={{ dev_user }} group={{ dev_user }} recurse=yes
+
+  - name: powerline fonts
+    git: repo=https://github.com/Lokaltog/powerline-fonts.git dest=/usr/share/fonts/powerline
+  - file: path=/usr/share/fonts/powerline owner=root group=root recurse=yes mode=0755
+  - command: fc-cache -f -v
+
+  - name: vim-spf13
+    apt: pkg=vim
+  - apt: pkg=vim-gnome
+  - apt: pkg=exuberant-ctags
+  - apt: pkg=ack-grep
+  - git: repo=https://github.com/spf13/spf13-vim.git dest=/home/{{ dev_user }}/.spf13-vim-3 version=3.0
+  - git: repo=https://github.com/gmarik/vundle.git dest=/home/{{ dev_user }}/.vim/bundle/vundle
+  - file: path=/home/{{ dev_user }}/.spf13-vim-3 owner={{ dev_user }} group={{ dev_user }} recurse=yes
+  - file: src={{ user_home}}/.spf13-vim-3/.vimrc dest={{ user_home }}/.vimrc owner={{ dev_user }} group={{ dev_user }} state=link
+  - file: src={{ user_home}}/.spf13-vim-3/.vimrc.bundles dest={{ user_home }}/.vimrc.bundles owner={{ dev_user }} group={{ dev_user }} state=link
+  - file: src={{ user_home}}/.spf13-vim-3/.vimrc.before dest={{ user_home }}/.vimrc.before owner={{ dev_user }} group={{ dev_user }} state=link
+  - copy: src=files/dotfiles/vimrc.local dest={{ user_home }}/.vimrc.local owner={{ dev_user }} group={{ dev_user }}
+  - copy: src=files/dotfiles/vimrc.before.local dest={{ user_home }}/.vimrc.before.local owner={{ dev_user }} group={{ dev_user }}
+
+  - name: vundle bundle install
+    shell: su - {{ dev_user }} -c "vim +BundleInstall +qall"
+
+  - name: dotfiles
+    copy: src=files/dotfiles/gitconfig dest={{ user_home }}/.gitconfig owner={{ dev_user }} group={{ dev_user }}
+    copy: src=files/dotfiles/tmux.conf dest={{ user_home }}/.tmux.conf owner={{ dev_user }} group={{ dev_user }}
+    copy: src=files/powerline/config_files/tmux/default.json dest=/usr/local/lib/python2.7/dist-packages/powerline/config_files/themes/tmux/default.json owner=root group=staff
+
+  - name: powerline
+    pip: name='git+git://github.com/Lokaltog/powerline'
+
