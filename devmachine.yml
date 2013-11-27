@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: local
   vars:
     dev_user: fitz
     user_home: /home/{{ dev_user }}
