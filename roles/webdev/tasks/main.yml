@@ -1,0 +1,8 @@
+---
+
+- apt: pkg=nodejs state=latest
+
+- name: install node packages
+  npm: name=grunt-cli global=yes state=latest
+- npm: name=yo global=yes state=latest
+- npm: name=generator-angular global=yes state=latest
