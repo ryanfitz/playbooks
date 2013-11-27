@@ -1,0 +1,2 @@
+---
+oh_my_zsh_home: /home/{{ dev_user }}/.oh-my-zsh

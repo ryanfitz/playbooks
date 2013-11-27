@@ -1,0 +1,9 @@
+---
+
+- name: powerline fonts
+  git: repo=https://github.com/Lokaltog/powerline-fonts.git dest=/usr/share/fonts/powerline
+- file: path=/usr/share/fonts/powerline owner=root group=root recurse=yes mode=0755
+- command: fc-cache -f -v
+
+- name: powerline
+  pip: name='git+git://github.com/Lokaltog/powerline'

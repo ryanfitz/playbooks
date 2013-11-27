@@ -14,9 +14,8 @@
   changed = green
   untracked = cyan
 [user]
-  name = Foo Bar
-  mail = foo@example.com
-  email = foo@example.com
+  name = Ryan Fitzgerald
+  email = ryan.fitz1@gmail.com
 [format]
   pretty = oneline
 [core]

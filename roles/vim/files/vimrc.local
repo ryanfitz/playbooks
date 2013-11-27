@@ -1,7 +1,7 @@
 set nospell
 nmap <silent> <C-N> :silent noh<CR>
 
-" clipboard support for mac
+" clipboard support
 set clipboard=unnamed
 
 set expandtab

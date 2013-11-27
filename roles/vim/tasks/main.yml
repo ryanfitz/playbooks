@@ -1,0 +1,18 @@
+---
+
+- name: vim-spf13
+  apt: pkg=vim
+- apt: pkg=vim-gnome
+- apt: pkg=exuberant-ctags
+- apt: pkg=ack-grep
+- git: repo=https://github.com/spf13/spf13-vim.git dest=/home/{{ dev_user }}/.spf13-vim-3 version=3.0
+- git: repo=https://github.com/gmarik/vundle.git dest=/home/{{ dev_user }}/.vim/bundle/vundle
+- file: path=/home/{{ dev_user }}/.spf13-vim-3 owner={{ dev_user }} group={{ dev_user }} recurse=yes
+- file: src={{ user_home}}/.spf13-vim-3/.vimrc dest={{ user_home }}/.vimrc owner={{ dev_user }} group={{ dev_user }} state=link
+- file: src={{ user_home}}/.spf13-vim-3/.vimrc.bundles dest={{ user_home }}/.vimrc.bundles owner={{ dev_user }} group={{ dev_user }} state=link
+- file: src={{ user_home}}/.spf13-vim-3/.vimrc.before dest={{ user_home }}/.vimrc.before owner={{ dev_user }} group={{ dev_user }} state=link
+- copy: src=vimrc.local dest={{ user_home }}/.vimrc.local owner={{ dev_user }} group={{ dev_user }}
+- copy: src=vimrc.before.local dest={{ user_home }}/.vimrc.before.local owner={{ dev_user }} group={{ dev_user }}
+
+- name: vundle bundle install
+  shell: su - {{ dev_user }} -c "vim +BundleInstall +qall"

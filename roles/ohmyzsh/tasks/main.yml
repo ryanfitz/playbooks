@@ -1,0 +1,12 @@
+---
+
+- name: install zsh
+  apt: pkg=zsh
+
+- name: setting zsh as default shell for {{ dev_user }}
+  shell: chsh -s /usr/bin/zsh {{ dev_user }}
+
+- name: setup oh-my-zsh
+  git: repo=git://github.com/robbyrussell/oh-my-zsh.git dest={{ oh_my_zsh_home }}
+- file: path={{ oh_my_zsh_home }} owner={{ dev_user }} group={{ dev_user }} recurse=yes
+- copy: src=zshrc.zsh-template dest=/home/{{ dev_user }}/.zshrc owner={{ dev_user }} group={{ dev_user}} mode=0644
