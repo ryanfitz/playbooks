@@ -85,10 +85,10 @@ bindsym $mod+a focus parent
 #bindcode $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1: main
-bindsym $mod+2 workspace 2: web
-bindsym $mod+3 workspace 3: logs
-bindsym $mod+4 workspace 4
+bindsym $mod+1 workspace "1: Web"
+bindsym $mod+2 workspace "2: Shell"
+bindsym $mod+3 workspace "3: Chat"
+bindsym $mod+4 workspace "4: Logs"
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -97,10 +97,10 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+exclam move container to workspace 1
-bindsym $mod+Shift+at move container to workspace 2
-bindsym $mod+Shift+numbersign move container to workspace 3
-bindsym $mod+Shift+dollar move container to workspace 4
+bindsym $mod+Shift+exclam move container to workspace "1: Web"
+bindsym $mod+Shift+at move container to workspace "2: Shell"
+bindsym $mod+Shift+numbersign move container to workspace "3: Chat"
+bindsym $mod+Shift+dollar move container to workspace "4: Logs"
 bindsym $mod+Shift+percent move container to workspace 5
 bindsym $mod+Shift+asciicircum move container to workspace 6
 bindsym $mod+Shift+ampersand move container to workspace 7
@@ -156,3 +156,8 @@ for_window [class="^Google-chrome$"] border none
 # application binds
 bindsym $mod+b exec google-chrome
 bindsym $mod+m exec nautilus --no-desktop
+
+# autoload applications
+exec --no-startup-id i3-msg 'workspace 1: Web; exec /usr/bin/google-chrome'
+exec --no-startup-id i3-msg 'workspace 2: Shell; exec /usr/bin/urxvt'
+
