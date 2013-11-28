@@ -61,6 +61,9 @@
 - name: install curl
   apt: pkg=curl
 
+- name: install build-essential
+  apt: pkg=build-essential
+
 - name: aws cli
   pip: name=awscli
 
