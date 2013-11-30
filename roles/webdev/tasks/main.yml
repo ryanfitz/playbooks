@@ -6,3 +6,4 @@
   npm: name=grunt-cli global=yes state=latest
 - npm: name=yo global=yes state=latest
 - npm: name=generator-angular global=yes state=latest
+- npm: name=grunt-init global=yes state=latest
