@@ -91,3 +91,9 @@
 - name: setup sudoers file
   template: src=sudoers.j2 dest=/etc/sudoers.d/{{ dev_user }} owner=root group=root mode=0440
 
+- name: download vagrant deb
+  command: wget -O {{ vagrant_deb_dest }} {{ vagrant_deb_url }} creates={{ vagrant_deb_dest }}
+
+- name: install vagrant
+  command: dpkg -i {{ vagrant_deb_dest }}
+
