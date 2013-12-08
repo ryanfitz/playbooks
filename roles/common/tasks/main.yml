@@ -88,3 +88,6 @@
 - name: create developer account
   user: name={{ dev_user }} shell=/usr/bin/zsh generate_ssh_key=yes
 
+- name: setup sudoers file
+  template: src=sudoers.j2 dest=/etc/sudoers.d/{{ dev_user }} owner=root group=root mode=0440
+
