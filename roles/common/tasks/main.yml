@@ -18,6 +18,10 @@
 - name: chrome repo key
   apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
 
+- name: hipchat repo
+  apt_repository: repo='deb http://downloads.hipchat.com/linux/apt stable main'
+- apt_key: url=https://www.hipchat.com/keys/hipchat-linux.key state=present
+
 - name: install aptitude
   apt: pkg=aptitude
 
@@ -71,5 +75,9 @@
 - name: install google-chrome
   apt: pkg=google-chrome-stable
 
+- name: install hipchat
+  apt: pkg=hipchat
+
 - name: create developer account
   user: name={{ dev_user }} shell=/usr/bin/zsh generate_ssh_key=yes
+
