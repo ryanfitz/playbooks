@@ -84,6 +84,7 @@
 
 - name: install virtualbox
   apt: pkg=virtualbox-4.3
+- apt: pkg=dkms
 
 - name: create developer account
   user: name={{ dev_user }} shell=/usr/bin/zsh generate_ssh_key=yes
