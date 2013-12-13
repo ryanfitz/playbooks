@@ -1,0 +1,21 @@
+---
+
+- name: Install lxc Packages
+  apt: >
+    pkg={{ item }}
+    state=installed
+  with_items:
+    - lxc
+    - lxc-templates
+    - cgroup-lite
+    - redir
+  tags: lxc
+
+- name: apt-get update
+  apt: update_cache=yes
+  tags: lxc
+
+# Update all packages to the latest version
+- name: apt-get dist-upgrade
+  apt: upgrade=dist
+  tags: lxc

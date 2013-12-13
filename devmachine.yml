@@ -1,8 +1,5 @@
 ---
 - hosts: local
-  vars:
-    dev_user: fitz
-    user_home: /home/{{ dev_user }}
   remote_user: root
   roles:
   - common
@@ -11,3 +8,5 @@
   - vim
   - dotfiles
   - webdev
+  #- virtualbox
+  - lxc

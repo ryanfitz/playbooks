@@ -1,0 +1,17 @@
+---
+
+- name: setup virtualbox repo key
+  apt_key: url=http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc state=present
+  tags: virtualbox
+
+- name: setup virtualbox repo
+  apt_repository: repo='deb http://download.virtualbox.org/virtualbox/debian {{ ansible_lsb.codename }} contrib' update_cache=yes
+  tags: virtualbox
+
+- name: install virtualbox
+  apt: pkg=virtualbox-4.3
+  tags: virtualbox
+
+- name: install dkms
+  apt: pkg=dkms
+  tags: virtualbox

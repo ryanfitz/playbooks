@@ -22,10 +22,6 @@
   apt_repository: repo='deb http://downloads.hipchat.com/linux/apt stable main'
 - apt_key: url=https://www.hipchat.com/keys/hipchat-linux.key state=present
 
-- name: setup virtualbox repo
-  apt_repository: repo='deb http://download.virtualbox.org/virtualbox/debian {{ ansible_lsb.codename }} contrib'
-- apt_key: url=http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc state=present
-
 - name: install aptitude
   apt: pkg=aptitude
 
@@ -81,10 +77,6 @@
 
 - name: install hipchat
   apt: pkg=hipchat
-
-- name: install virtualbox
-  apt: pkg=virtualbox-4.3
-- apt: pkg=dkms
 
 - name: create developer account
   user: name={{ dev_user }} shell=/usr/bin/zsh generate_ssh_key=yes
