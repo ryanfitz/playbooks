@@ -67,6 +67,7 @@ Xft.hintstyle:  hintslight
 ! the color assignment statement with its name. Example:
 !
 ! URxvt*background:            S_base03
+URxvt*color8:             S_base01
 
 *background:              S_base03
 *foreground:              S_base0
