@@ -72,6 +72,9 @@
 - name: aws cli
   pip: name=awscli
 
+- name: install jq
+  apt: pkg=jq
+
 - name: install google-chrome
   apt: pkg=google-chrome-stable
 
