@@ -1,5 +1,5 @@
 set nospell
-nmap <silent> <C-N> :silent noh<CR>
+nnoremap <esc> :noh<return><esc>
 
 " clipboard support
 set clipboard=unnamed
