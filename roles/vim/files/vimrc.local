@@ -1,4 +1,5 @@
 set nospell
+set conceallevel=0
 nmap <silent> <C-N> :silent noh<CR>
 
 " clipboard support
