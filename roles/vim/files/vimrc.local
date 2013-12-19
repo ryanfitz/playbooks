@@ -1,5 +1,4 @@
 set nospell
-set conceallevel=0
 nmap <silent> <C-N> :silent noh<CR>
 
 " clipboard support
@@ -21,3 +20,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3E3D32   ctermbg=235
 
 "colorscheme molokai
 "let g:Powerline_symbols="fancy"
+"
+if has('conceal')
+  set conceallevel=0
+endif
