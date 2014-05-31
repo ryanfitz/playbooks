@@ -3,5 +3,5 @@
 dev_user: fitz
 user_home: /home/{{ dev_user }}
 
-vagrant_deb_url: https://dl.bintray.com/mitchellh/vagrant/vagrant_1.4.1_x86_64.deb
-vagrant_deb_dest: /tmp/vagrant_1.4.1_x86_64.deb
+vagrant_deb_url: https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_64.deb
+vagrant_deb_dest: /tmp/vagrant_1.6.3_x86_64.deb
