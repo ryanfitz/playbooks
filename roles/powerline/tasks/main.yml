@@ -6,4 +6,4 @@
 - command: fc-cache -f -v
 
 - name: powerline
-  pip: name='git+git://github.com/Lokaltog/powerline'
+  pip: name='git+git://github.com/Lokaltog/powerline#egg=powerline'

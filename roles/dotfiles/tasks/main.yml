@@ -12,4 +12,3 @@
 - copy: src=tmux.conf dest={{ user_home }}/.tmux.conf owner={{ dev_user }} group={{ dev_user }}
 - copy: src=xprofile dest={{ user_home }}/.xprofile owner={{ dev_user }} group={{ dev_user }} mode=0755
 - copy: src=powerline/config_files/tmux/default.json dest=/usr/local/lib/python2.7/dist-packages/powerline/config_files/themes/tmux/default.json owner=root group=staff
-
