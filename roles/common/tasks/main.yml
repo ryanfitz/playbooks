@@ -51,6 +51,9 @@
 - name: install urxvt
   apt: pkg=rxvt-unicode-256color
 
+- name: install settings daemon
+  apt: pkg=gnome-settings-daemon
+
 - name: install i3-wm
   apt: pkg=i3
 
