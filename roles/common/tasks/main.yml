@@ -96,3 +96,9 @@
 - name: install vagrant
   command: dpkg -i {{ vagrant_deb_dest }}
 
+- name: install ruby 1.9.3
+  apt: pkg=ruby1.9.3
+
+- name: install teamocil
+  gem: name=teamocil state=latest
+
